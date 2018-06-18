@@ -83,6 +83,23 @@ public class App {
             return "{\"message\":\"User deleted\"}";
         });
 
+        options("/*", (request, response) -> {
+            String accessControlRequestHeaders = request
+                    .headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers",
+                        accessControlRequestHeaders);
+            }
+
+            String accessControlRequestMethod = request
+                    .headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods",
+                        accessControlRequestMethod);
+            }
+            return "OK";
+        });
+
 
 
         //FILTERS
@@ -95,6 +112,8 @@ public class App {
             response.status(err.getStatusCode());
             response.body(gson.toJson(jsonMap));
         });
+
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
 
         after((request, response) -> {
