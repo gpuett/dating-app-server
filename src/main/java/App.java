@@ -31,8 +31,8 @@ public class App {
         Gson gson = new Gson();
         Sql2o sql2o;
         if(isProduction) {
-            String connectionString = "jdbc:postgresql://"; // Heroku credentials
-            sql2o = new Sql2o(connectionString, "", ""); // Heroku credentials
+            String connectionString = "jdbc:postgresql://ec2-50-16-241-91.compute-1.amazonaws.com:5432/d4qiavnsf9qp1m"; // Heroku credentials
+            sql2o = new Sql2o(connectionString, "imdaslwvhqalub", "292e6598f06cc2f0fde337d28b602a40eaa42bdcd5081c0e0ab69cda6f9b025f"); // Heroku credentials
         } else {
             String connectionString = "jdbc:postgresql://localhost:5432/dating_app";
             sql2o = new Sql2o(connectionString, null, null);
