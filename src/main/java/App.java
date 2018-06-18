@@ -57,6 +57,31 @@ public class App {
             }
         });
 
+        get("/users/:id", "application/json", (request, response) -> {
+            int userId = Integer.parseInt(request.params("id"));
+
+            User userToFind = userDao.findById(userId);
+
+            if(userToFind == null) {
+                throw new ApiException(404, String.format("No user with the id: '%s' exists", request.params("id")));
+            }
+
+            return gson.toJson(userToFind);
+        });
+
+        post("/users/:id/update", "application/json", (request, response) -> {
+           int userId = Integer.parseInt(request.params("id"));
+           User updatedUser = gson.fromJson(request.body(), User.class);
+           userDao.update(userId, updatedUser.getName(), updatedUser.getBio(), updatedUser.getAge(), updatedUser.getOrientation(), updatedUser.getImageUrl(), updatedUser.getInterests());
+           response.status(201);
+           return gson.toJson(userDao.findById(userId));
+        });
+
+        post("/users/:id/delete", "application/json", (request, response) -> {
+            int userId = Integer.parseInt(request.params("id"));
+            userDao.deleteById(userId);
+            return "{\"message\":\"User deleted\"}";
+        });
 
 
 
