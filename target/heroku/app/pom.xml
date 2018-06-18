@@ -83,7 +83,7 @@
                 <version>0.4.4</version>
                 <configuration>
                     <jdkVersion>1.8</jdkVersion>
-                    <appName>dating-app</appName>
+                    <appName>dating-app-server</appName>
                     <processTypes>
                         <web>java -jar target/my-app-1.0-jar-with-dependencies.jar</web>
                     </processTypes>
