@@ -29,6 +29,7 @@ public class App {
         Sql2oUserDao userDao;
         Connection conn;
         Gson gson = new Gson();
+        CorsFilter.apply();
         Sql2o sql2o;
         if(isProduction) {
             String connectionString = "jdbc:postgresql://ec2-50-16-241-91.compute-1.amazonaws.com:5432/d4qiavnsf9qp1m"; // Heroku credentials
