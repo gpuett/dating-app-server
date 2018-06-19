@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import dao.Sql2oUserDao;
 import exceptions.ApiException;
+import filters.CorsFilter;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -84,22 +85,22 @@ public class App {
             return "{\"message\":\"User deleted\"}";
         });
 
-//        options("/*", (request, response) -> {
-//            String accessControlRequestHeaders = request
-//                    .headers("Access-Control-Request-Headers");
-//            if (accessControlRequestHeaders != null) {
-//                response.header("Access-Control-Allow-Headers",
-//                        accessControlRequestHeaders);
-//            }
-//
-//            String accessControlRequestMethod = request
-//                    .headers("Access-Control-Request-Method");
-//            if (accessControlRequestMethod != null) {
-//                response.header("Access-Control-Allow-Methods",
-//                        accessControlRequestMethod);
-//            }
-//            return "OK";
-//        });
+        options("/*", (request, response) -> {
+            String accessControlRequestHeaders = request
+                    .headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers",
+                        accessControlRequestHeaders);
+            }
+
+            String accessControlRequestMethod = request
+                    .headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods",
+                        accessControlRequestMethod);
+            }
+            return "OK";
+        });
 
 
 

@@ -1,3 +1,5 @@
+package filters;
+
 import java.util.HashMap;
 import spark.Filter;
 import spark.Request;
